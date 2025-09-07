@@ -1,0 +1,7 @@
+set(ANDROID_SDK_ROOT "D:/AndroidEnv/SDK")
+set(ANDROID_NDK "D:/AndroidEnv/SDK/ndk/27.2.12479018")
+set(CMAKE_TOOLCHAIN_FILE "${ANDROID_NDK}/build/cmake/android.toolchain.cmake")
+set(ANDROID_ABI "x86_64")
+set(ANDROID_PLATFORM 35)
+set(CMAKE_PREFIX_PATH "D:/Qt/6.9.2/android_x86_64")
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE NEVER)
