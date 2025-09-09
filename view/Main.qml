@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
+import ZeroUi
 
 Window {
 
@@ -14,10 +15,23 @@ Window {
     // 无边框
     flags: Qt.FramelessWindowHint
 
-    Button {
-        width: 130
-        height: 60
-        text: "Click me"
+    Column {
         anchors.centerIn: parent
+
+        Button {
+            width: 130
+            height: 60
+            text: "Click me"
+        }
+
+        Button {
+            width: 130
+            height: 60
+            text: "No Click me"
+        }
+    }
+
+    ApplicationTip {
+        tip: "Successfully"
     }
 }

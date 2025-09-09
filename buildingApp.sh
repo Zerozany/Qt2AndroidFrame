@@ -21,6 +21,8 @@ else
     buildType="Debug"
 fi
 
+rm -rf build/*
+
 # 根据 device 构建
 if [ "$device" = "a" ]; then
     cmake -B build/android -G "Ninja" -DANDROID_OPTION=ON -DCMAKE_BUILD_TYPE=$buildType

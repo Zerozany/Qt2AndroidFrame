@@ -8,6 +8,9 @@ endif()
 
 project(execuApp VERSION 1.0.0 LANGUAGES CXX)
 
+add_subdirectory("${CMAKE_SOURCE_DIR}/third/ZeroUi")
+
 include("${CMAKE_SOURCE_DIR}/cmakes/importQt.cmake")
 include("${CMAKE_SOURCE_DIR}/cmakes/importConfig.cmake")
 include("${CMAKE_SOURCE_DIR}/cmakes/importSource.cmake")
+include("${CMAKE_SOURCE_DIR}/cmakes/import3rd.cmake")
