@@ -21,7 +21,7 @@ else
     buildType="Debug"
 fi
 
-rm -rf build/*
+rm -rf build
 
 # 根据 device 构建
 if [ "$device" = "a" ]; then
