@@ -1,45 +1,70 @@
 #!/bin/bash
 
+# 解析参数
 while getopts "d:t:h" opt; do
     case $opt in
         d) device=$OPTARG ;;
         t) type=$OPTARG ;;
-        h) echo "Usage: $0 -d <device> -t <build type>"; exit 0 ;;
+        h) echo "Usage: $0 -d <device: p/a> -t <build type: d/r>"; exit 0 ;;
         ?) echo "Unknown params"; exit 1 ;;
     esac
 done
 
-# 如果 type 为空，则默认 debug
+# 默认 build type 为 Debug
 if [ -z "$type" ]; then
     type="d"
 fi
 
-# 判断 buildType
 if [ "$type" = "r" ]; then
     buildType="Release"
 else
     buildType="Debug"
 fi
 
+clear
 rm -rf build
 
 # 根据 device 构建
 if [ "$device" = "a" ]; then
-    cmake -B build/android -G "Ninja" -DANDROID_OPTION=ON -DCMAKE_BUILD_TYPE=$buildType
-    if [ $? -eq 0 ]; then
-        cmake --build build/android --config $buildType -j8
+    # Android 构建
+    if [ "$buildType" = "Debug" ]; then
+        configurePreset="AndroidDebug"
+        buildPreset="AndroidDebugBuild"
     else
-        echo "❌ CMake configuration failed!"
+        configurePreset="AndroidRelease"
+        buildPreset="AndroidReleaseBuild"
+    fi
+
+    # 配置
+    cmake --preset $configurePreset
+    if [ $? -eq 0 ]; then
+        # 构建（Ninja 支持 -j8）
+        cmake --build --preset $buildPreset -- -j8
+    else
+        echo "❌ Android CMake configuration failed!"
         exit 1
     fi
+
 elif [ "$device" = "p" ]; then
-    cmake -B build/pc -DCMAKE_BUILD_TYPE=$buildType
-    if [ $? -eq 0 ]; then
-        cmake --build build/pc --config $buildType -j8
+    # PC 构建
+    if [ "$buildType" = "Debug" ]; then
+        configurePreset="PcDebug"
+        buildPreset="PcDebugBuild"
     else
-        echo "❌ CMake configuration failed!"
+        configurePreset="PcRelease"
+        buildPreset="PcReleaseBuild"
+    fi
+
+    # 配置
+    cmake --preset $configurePreset
+    if [ $? -eq 0 ]; then
+        # 构建（并行 8 线程）
+        cmake --build --preset $buildPreset -- -j8
+    else
+        echo "❌ PC CMake configuration failed!"
         exit 1
     fi
+
 else
     echo "❌ Unknown device: $device"
     exit 1

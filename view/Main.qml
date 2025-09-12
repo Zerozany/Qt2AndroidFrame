@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
-import ZeroUi
+import SonixBeautyUi
 
 Window {
 
@@ -33,5 +33,11 @@ Window {
 
     ApplicationTip {
         tip: "Successfully"
+    }
+
+    Item {
+        Component.onCompleted: {
+            console.log("Hello from QML");
+        }
     }
 }

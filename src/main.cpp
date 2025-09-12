@@ -8,5 +8,7 @@ int main(int argc, char* argv[])
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed, &app, [] { QCoreApplication::exit(-1); }, Qt::QueuedConnection);
     engine.addImportPath("ZeroUi");
     engine.load(QUrl{"qrc:/App/view/Main.qml"});
+    qDebug() << "Hello Qt Android";
+
     return QGuiApplication::exec();
 }

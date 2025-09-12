@@ -6,9 +6,9 @@ if(ANDROID_OPTION)
   include("${CMAKE_SOURCE_DIR}/cmakes/importAndroid.cmake")
 endif()
 
-project(execuApp VERSION 1.0.0 LANGUAGES CXX)
+project(SonixBeautyStudio VERSION 1.0.0 LANGUAGES CXX)
 
-add_subdirectory("${CMAKE_SOURCE_DIR}/third/ZeroUi")
+add_subdirectory("${CMAKE_SOURCE_DIR}/third/SonixBeautyUi")
 
 include("${CMAKE_SOURCE_DIR}/cmakes/importQt.cmake")
 include("${CMAKE_SOURCE_DIR}/cmakes/importConfig.cmake")

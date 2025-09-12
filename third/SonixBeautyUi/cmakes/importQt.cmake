@@ -3,8 +3,6 @@ find_package(Qt6 REQUIRED
     Quick
     Qml
     Core
-    Network
-    Concurrent
     QuickControls2
 )
 
@@ -23,8 +21,6 @@ target_link_libraries(${PROJECT_NAME}
     Qt6::Quick
     Qt6::Qml
     Qt6::Core
-    Qt6::Network
-    Qt6::Concurrent
     Qt6::QuickControls2
 )
 

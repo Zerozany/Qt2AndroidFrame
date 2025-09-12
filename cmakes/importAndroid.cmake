@@ -9,3 +9,7 @@ set(ANDROID_PLATFORM 35)
 # 3️⃣ Qt Android 路径
 set(CMAKE_PREFIX_PATH "D:/Qt/6.9.2/android_x86_64")
 set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE NEVER)
+
+# Android Studio 实时查看打印
+# .\adb devices 替换下方 -s 后的设备名称
+# PS D:\AndroidEnv\SDK\platform-tools> .\adb -s emulator-5554 logcat -s Qt QtActivity
