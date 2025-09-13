@@ -38,8 +38,7 @@ if [ "$device" = "a" ]; then
     # 配置
     cmake --preset $configurePreset
     if [ $? -eq 0 ]; then
-        # 构建（Ninja 支持 -j8）
-        cmake --build --preset $buildPreset -- -j8
+        cmake --build --preset $buildPreset 
     else
         echo "❌ Android CMake configuration failed!"
         exit 1
@@ -58,8 +57,7 @@ elif [ "$device" = "p" ]; then
     # 配置
     cmake --preset $configurePreset
     if [ $? -eq 0 ]; then
-        # 构建（并行 8 线程）
-        cmake --build --preset $buildPreset -- -j8
+        cmake --build --preset $buildPreset 
     else
         echo "❌ PC CMake configuration failed!"
         exit 1

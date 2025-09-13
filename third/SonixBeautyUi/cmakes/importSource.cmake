@@ -16,6 +16,7 @@ set_source_files_properties(${QMLSINGLETONS}
 qt_add_qml_module(${PROJECT_NAME}
     URI "${PROJECT_NAME}"
     VERSION 1.0
+    RESOURCE_PREFIX "/"
     NO_PLUGIN
     QML_FILES ${QFILES} ${QMLSINGLETONS}
     OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${PROJECT_NAME}"

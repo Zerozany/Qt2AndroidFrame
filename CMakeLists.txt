@@ -9,6 +9,7 @@ endif()
 project(SonixBeautyStudio VERSION 1.0.0 LANGUAGES CXX)
 
 add_subdirectory("${CMAKE_SOURCE_DIR}/third/SonixBeautyUi")
+add_subdirectory("${CMAKE_SOURCE_DIR}/third/WifiConfig")
 
 include("${CMAKE_SOURCE_DIR}/cmakes/importQt.cmake")
 include("${CMAKE_SOURCE_DIR}/cmakes/importConfig.cmake")

@@ -1,10 +1,8 @@
-import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import SonixBeautyUi
 
 Window {
-
     visible: true
     title: qsTr("Hello World")
     color: "#1b5acf"
@@ -36,8 +34,6 @@ Window {
     }
 
     Item {
-        Component.onCompleted: {
-            console.log("Hello from QML");
-        }
+        Component.onCompleted: {}
     }
 }
