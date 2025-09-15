@@ -6,6 +6,10 @@
     android:versionName="-- %%INSERT_VERSION_NAME%% --">
     <!-- %%INSERT_PERMISSIONS -->
     <!-- %%INSERT_FEATURES -->
+     <!-- ✅ 必须的权限 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
