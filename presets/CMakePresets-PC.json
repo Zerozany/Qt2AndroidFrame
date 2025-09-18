@@ -1,0 +1,41 @@
+{
+    "version": 4,
+    "configurePresets": [
+        {
+            "name": "BasePC",
+            "hidden": true
+        },
+        {
+            "name": "PcDebug",
+            "inherits": [
+                "BasePC"
+            ],
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "PcRelease",
+            "inherits": [
+                "BasePC"
+            ],
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "PcDebugBuild",
+            "configurePreset": "PcDebug",
+            "jobs": 8
+        },
+        {
+            "name": "PcReleaseBuild",
+            "configurePreset": "PcRelease",
+            "jobs": 8
+        }
+    ]
+}

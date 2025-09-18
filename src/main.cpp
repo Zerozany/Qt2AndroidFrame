@@ -1,6 +1,5 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include "WinWifiConfig.h"
 
 #if defined(ANDROID)
 #include <QJniObject>
@@ -16,7 +15,6 @@ int main(int argc, char* argv[])
     engine.load(QUrl{"qrc:/App/view/Main.qml"});
 #if defined(ANDROID)
 #endif
-    WinWifiConfig winWifiConfig{};
-    winWifiConfig.searchWifiDevice();
+
     return QGuiApplication::exec();
 }

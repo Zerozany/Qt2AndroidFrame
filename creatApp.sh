@@ -28,11 +28,11 @@ rm -rf build
 if [ "$device" = "a" ]; then
     # Android 构建
     if [ "$buildType" = "Debug" ]; then
-        configurePreset="AndroidDebug"
-        buildPreset="AndroidDebugBuild"
+        configurePreset="Debug"
+        buildPreset="AndroidDebug"
     else
         configurePreset="AndroidRelease"
-        buildPreset="AndroidReleaseBuild"
+        buildPreset="AndroidRelease"
     fi
 
     # 配置
