@@ -3,6 +3,7 @@ import QtQuick.Controls
 import SonixBeautyUi
 
 Window {
+    id: mainWindow
     visible: true
     title: qsTr("Hello World")
     color: "#1b5acf"

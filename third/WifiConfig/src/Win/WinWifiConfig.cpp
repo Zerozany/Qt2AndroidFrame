@@ -26,7 +26,6 @@ auto WinWifiConfig::init() noexcept -> void
         {
             case wlan_notification_acm_scan_complete:  // 表示一次 Wi-Fi 扫描完成
             {
-                // self->searchWifiDevice();
                 break;
             }
             case wlan_notification_acm_scan_fail:  // 扫描失败，可能是无线网卡问题、驱动错误或权限不足
@@ -273,7 +272,7 @@ auto WinWifiConfig::connectWifi2Ssid(const std::string& _ssid, const std::string
             "</MSM>"
             "</WLANProfile>",
             _ssid, _ssid, _password)};
-        return std::wstring(utf8Xml.begin(), utf8Xml.end());
+        return std::wstring{utf8Xml.begin(), utf8Xml.end()};
     }};
 
     PWLAN_INTERFACE_INFO_LIST pIfList{nullptr};
