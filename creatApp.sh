@@ -31,7 +31,7 @@ if [ "$device" = "a" ]; then
         configurePreset="Debug"
         buildPreset="AndroidDebug"
     else
-        configurePreset="AndroidRelease"
+        configurePreset="Release"
         buildPreset="AndroidRelease"
     fi
 

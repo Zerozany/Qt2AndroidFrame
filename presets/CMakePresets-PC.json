@@ -3,7 +3,14 @@
     "configurePresets": [
         {
             "name": "BasePC",
-            "hidden": true
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_PREFIX_PATH": "D:/Qt/6.9.2/msvc2022_64"
+            },
+            "environment": {
+                "VCINSTALLDIR": "D:/MSVC/BuildTools/VC",
+                "PATH": "D:/Qt/6.9.2/msvc2022_64/bin;$PATH"
+            }
         },
         {
             "name": "PcDebug",
@@ -30,12 +37,14 @@
         {
             "name": "PcDebugBuild",
             "configurePreset": "PcDebug",
-            "jobs": 8
+            "jobs": 8,
+            "configuration": "Debug"
         },
         {
             "name": "PcReleaseBuild",
             "configurePreset": "PcRelease",
-            "jobs": 8
+            "jobs": 8,
+            "configuration": "Release"
         }
     ]
 }
