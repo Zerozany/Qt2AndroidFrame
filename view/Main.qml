@@ -33,6 +33,7 @@ Window {
     ApplicationTip {
         tip: "Successfully"
     }
+    
 
     Item {
         Component.onCompleted: {}

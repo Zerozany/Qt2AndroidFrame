@@ -10,10 +10,9 @@
                 "ANDROID_NDK": "D:/AndroidEnv/SDK/ndk/27.2.12479018",
                 "CMAKE_TOOLCHAIN_FILE": "D:/AndroidEnv/SDK/ndk/27.2.12479018/build/cmake/android.toolchain.cmake",
                 "CMAKE_PREFIX_PATH": "D:/Qt/6.9.2/android_arm64_v8a",
-                "ANDROID_OPTION": "ON",
-                "CMAKE_FIND_ROOT_PATH_MODE_PACKAGE": "NEVER",
                 "ANDROID_ABI": "arm64-v8a",
-                "ANDROID_PLATFORM": "35"
+                "ANDROID_PLATFORM": "35",
+                "CMAKE_FIND_ROOT_PATH_MODE_PACKAGE": "NEVER"
             },
             "environment": {
                 "JAVA_HOME": "D:/Android Studio/jbr",
@@ -21,7 +20,7 @@
             }
         },
         {
-            "name": "Debug",
+            "name": "AndroidDebug",
             "inherits": [
                 "BaseAndroid"
             ],
@@ -31,7 +30,7 @@
             }
         },
         {
-            "name": "Release",
+            "name": "AndroidRelease",
             "inherits": [
                 "BaseAndroid"
             ],
@@ -50,14 +49,14 @@
     ],
     "buildPresets": [
         {
-            "name": "AndroidDebug",
-            "configurePreset": "Debug",
+            "name": "AndroidDebugBuild",
+            "configurePreset": "AndroidDebug",
             "jobs": 8,
             "configuration": "Debug"
         },
         {
-            "name": "AndroidRelease",
-            "configurePreset": "Release",
+            "name": "AndroidReleaseBuild",
+            "configurePreset": "AndroidRelease",
             "jobs": 8,
             "configuration": "Release"
         }

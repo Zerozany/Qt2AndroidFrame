@@ -5,8 +5,5 @@ target_compile_features(${PROJECT_NAME}
 
 if(MSVC)
     add_compile_options(/utf-8)
-endif()
-
-if(MSVC)
     add_compile_options("/FS")
 endif()

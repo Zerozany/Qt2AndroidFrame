@@ -7,9 +7,14 @@ if(MSVC)
     add_compile_options("/FS")
 endif()
 
-if(ANDROID_OPTION)
+if(WIN32)
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND windeployqt.exe $<$<CONFIG:Debug>:--debug> $<$<CONFIG:Release>:--release>
+        --qmldir "${CMAKE_SOURCE_DIR}/view"
+        $<TARGET_FILE:${PROJECT_NAME}>
+    )
+elseif(ANDROID)
     # # Android Studio 实时查看Debug、QML打印
-    # .\adb devices 替换下方 -s 后的设备名称
     # .\adb.exe logcat -c ; .\adb.exe logcat -s "qml:*" "default:D"
 
     # 统一定义应用名和版本号
@@ -29,13 +34,5 @@ if(ANDROID_OPTION)
 
         # Android 环境变量
         QT_ANDROID_ENVIRONMENT_VARIABLES "qt_android_no_exit_call=1"
-    )
-endif()
-
-if(WIN32)
-    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMAND windeployqt.exe $<$<CONFIG:Debug>:--debug> $<$<CONFIG:Release>:--release>
-        --qmldir "${CMAKE_SOURCE_DIR}/view"
-        $<TARGET_FILE:${PROJECT_NAME}>
     )
 endif()
