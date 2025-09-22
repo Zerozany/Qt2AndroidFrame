@@ -5,6 +5,7 @@
 #include <QJniObject>
 #include <QJniEnvironment>
 #include <QQuickStyle>
+#include "AndroidWifiConfig.h"
 #endif
 
 int main(int argc, char* argv[])
@@ -20,6 +21,7 @@ int main(int argc, char* argv[])
     engine.addImportPath("qrc:/");
     engine.load(QUrl{"qrc:/App/view/Main.qml"});
 #if defined(ANDROID)
+    AndroidWifiConfig androidWifiConfig{};
 #endif
 
     return QGuiApplication::exec();

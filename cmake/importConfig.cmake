@@ -23,7 +23,7 @@ elseif(ANDROID)
     set(VERSION_NAME "1.0.0")
 
     set_target_properties(${PROJECT_NAME} PROPERTIES
-        QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android/android-build"
+        QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/third/android/android-build"
         QT_ANDROID_PACKAGE_NAME "${PACKAGE_NAME}"
         QT_ANDROID_APP_ICON "@drawable/ic_launcher"
         QT_ANDROID_APP_NAME "${APP_NAME}" # 应用名称
