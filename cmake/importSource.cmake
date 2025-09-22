@@ -1,5 +1,6 @@
 file(GLOB QFILES RELATIVE ${CMAKE_SOURCE_DIR}
-    "${CMAKE_SOURCE_DIR}/view/Main.qml"
+    "${CMAKE_SOURCE_DIR}/view/**/*.qml"
+    "${CMAKE_SOURCE_DIR}/view/*.qml"
 )
 
 qt_add_qml_module(${PROJECT_NAME}

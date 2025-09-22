@@ -20,10 +20,10 @@ elseif(ANDROID)
     # 统一定义应用名和版本号
     set(PACKAGE_NAME "org.qtproject.SonixBeauty")
     set(APP_NAME "SonixBeauty Studio")
-    set(VERSION_NAME "1.0.0")
+    set(VERSION_NAME "1.0.0.0")
 
     set_target_properties(${PROJECT_NAME} PROPERTIES
-        QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/third/android/android-build"
+        QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_SOURCE_DIR}/third/android/android-build"
         QT_ANDROID_PACKAGE_NAME "${PACKAGE_NAME}"
         QT_ANDROID_APP_ICON "@drawable/ic_launcher"
         QT_ANDROID_APP_NAME "${APP_NAME}" # 应用名称
