@@ -4,39 +4,43 @@
 #include <QJniObject>
 #include <QJniEnvironment>
 #include <QDebug>
+#include <QCoreApplication>
 
-void callJavaPrintMessage()
+QString callJavaPrintMessage()
 {
-    // 创建 Java 对象
-    QJniObject helper("com/sonix/wifi/WifiHelper");
+    // 获取 Android Activity
+    auto androidApp{QCoreApplication::instance()->nativeInterface<QNativeInterface::QAndroidApplication>()};
+    if (!androidApp)
+    {
+        qDebug() << "Failed to get QAndroidApplication";
+        return QString();
+    }
+
+    QJniObject activity{androidApp->context()};
+    if (!activity.isValid())
+    {
+        qDebug() << "Failed to get Activity context";
+        return QString();
+    }
+
+    QJniObject helper{"com/sonixbeauty/wifi/WifiRelativeInfo",
+                      "(Landroid/app/Activity;)V",
+                      activity.object<jobject>()};
     if (!helper.isValid())
     {
         qDebug() << "Cannot create Java helper instance";
-        return;
+        return QString();
     }
 
-    // 调用实例方法 getMessage，签名 ()Ljava/lang/String;
-    QJniObject jstr = helper.callObjectMethod(
-        "getMessage",
-        "()Ljava/lang/String;");
-
-    if (jstr.isValid())
-    {
-        QString msg = jstr.toString();
-        qDebug() << "Java message:" << msg;
-    }
-    else
-    {
-        qDebug() << "Failed to get Java string";
-    }
+    QJniObject jstr{helper.callObjectMethod("getCurrentWifiSSID", "()Ljava/lang/String;")};
+    return jstr.isValid() ? jstr.toString() : QString();
 }
-
 #endif
 
 AndroidWifiConfig::AndroidWifiConfig()
 {
 #if defined(ANDROID)
-    callJavaPrintMessage();
+    qDebug() << "SSID:" << callJavaPrintMessage();
 #endif
 }
 
