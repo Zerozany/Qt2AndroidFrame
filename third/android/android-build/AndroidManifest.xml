@@ -11,6 +11,8 @@
     <!-- Android 10+ 需要额外权限 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"

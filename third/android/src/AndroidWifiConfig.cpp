@@ -32,7 +32,7 @@ QString callJavaPrintMessage()
         return QString();
     }
 
-    QJniObject jstr{helper.callObjectMethod("getCurrentWifiSSID", "()Ljava/lang/String;")};
+    QJniObject jstr{helper.callObjectMethod("scanAndGetWifiList", "()Ljava/lang/String;")};
     return jstr.isValid() ? jstr.toString() : QString();
 }
 #endif
