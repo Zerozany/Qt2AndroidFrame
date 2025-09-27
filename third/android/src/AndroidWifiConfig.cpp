@@ -32,15 +32,16 @@ QString callJavaPrintMessage()
         return QString();
     }
 
-    QJniObject jstr{helper.callObjectMethod("scanAndGetWifiList", "()Ljava/lang/String;")};
-    return jstr.isValid() ? jstr.toString() : QString();
+    // QJniObject jstr{helper.callObjectMethod("scanAndGetWifiList", "()Ljava/lang/String;")};
+    // return jstr.isValid() ? jstr.toString() : QString();
+    return QString();
 }
 #endif
 
 AndroidWifiConfig::AndroidWifiConfig()
 {
 #if defined(ANDROID)
-    qDebug() << "SSID:" << callJavaPrintMessage();
+    callJavaPrintMessage();
 #endif
 }
 
