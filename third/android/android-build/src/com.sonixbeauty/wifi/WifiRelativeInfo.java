@@ -4,10 +4,15 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkRequest;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.net.wifi.WifiNetworkSpecifier;
 import android.util.Log;
 import androidx.core.app.ActivityCompat;
 import java.util.ArrayList;
@@ -23,7 +28,7 @@ public class WifiRelativeInfo {
     {
         init(_activity);
         requestPermission();
-        scanWifiList();
+        connectWifi("ChinaNet-zero821-5G", "18583943303");
     }
 
     private void init(Activity _activity)
@@ -98,6 +103,49 @@ public class WifiRelativeInfo {
             return ssid;
         } catch (Exception e) {
             return "getCurrentWifiSSID error: " + e.getMessage();
+        }
+    }
+
+    public void connectWifi(String ssid, String password)
+    {
+        try {
+            WifiNetworkSpecifier specifier = new WifiNetworkSpecifier.Builder()
+                                                 .setSsid(ssid)
+                                                 .setWpa2Passphrase(password)
+                                                 .build();
+
+            NetworkRequest request = new NetworkRequest.Builder()
+                                         .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+                                         .setNetworkSpecifier(specifier)
+                                         .build();
+
+            ConnectivityManager cm = (ConnectivityManager)m_activity.getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (cm == null) {
+                Log.e(TAG, "ConnectivityManager is null");
+                return;
+            }
+            cm.requestNetwork(request, new ConnectivityManager.NetworkCallback() {
+                @Override
+                public void onAvailable(Network network)
+                {
+                    // 连接成功
+                    Log.d(TAG, "Connected to Wi-Fi: " + ssid);
+                    cm.bindProcessToNetwork(network); // 可选，将 app 网络绑定到指定 Wi-Fi
+                }
+                @Override
+                public void onUnavailable()
+                {
+                    Log.d(TAG, "Failed to connect to Wi-Fi: " + ssid);
+                }
+                @Override
+                public void onLost(Network network)
+                {
+                    Log.d(TAG, "Wi-Fi disconnected: " + ssid);
+                }
+            });
+            Log.d(TAG, "Requesting connection to Wi-Fi: " + ssid);
+        } catch (Exception e) {
+            Log.e(TAG, "connectWifi error: " + e.getMessage(), e);
         }
     }
 }
