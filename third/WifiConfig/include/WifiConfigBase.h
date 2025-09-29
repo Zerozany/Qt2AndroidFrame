@@ -14,8 +14,6 @@ private:
     virtual auto init() noexcept -> void = 0;
 
 public:
-    virtual auto scanWifiDevice() noexcept -> bool = 0;
-
     virtual auto searchWifiDevice() noexcept -> std::map<std::string, std::string> = 0;
 
     virtual auto curConnectedWifi() noexcept -> std::string = 0;

@@ -19,16 +19,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WifiRelativeInfo {
+    public static final int DISCONNECTED = 0;
+    public static final int CONNECTSUCCESS = 1;
+    public static final int CONNECTERROR = 2;
+
     private Activity m_activity;
     private WifiManager m_wifiManager;
     private final int REQUEST_LOCATION_PERMISSION = 1001;
     private static final String TAG = "SonixBeauty"; // 全局统一 TAG
 
+    // 声明 native 方法
+    private native void connectSuccess(int state);
+
     public WifiRelativeInfo(Activity _activity)
     {
         init(_activity);
         requestPermission();
-        connectWifi("ChinaNet-zero821-5G", "18583943303");
     }
 
     private void init(Activity _activity)
@@ -62,7 +68,7 @@ public class WifiRelativeInfo {
         }
     }
 
-    public void scanWifiList()
+    public String scanWifiList()
     {
         try {
             if (!m_wifiManager.isWifiEnabled()) {
@@ -71,19 +77,20 @@ public class WifiRelativeInfo {
             @SuppressWarnings("deprecation")
             boolean success = m_wifiManager.startScan();
             if (!success) {
-                return;
+                return "NULL";
             }
             List<ScanResult> scanResults = m_wifiManager.getScanResults();
             if (scanResults == null || scanResults.isEmpty()) {
-                return;
+                return "NULL";
             }
             StringBuilder sb = new StringBuilder();
             for (ScanResult result : scanResults) {
-                sb.append(result.SSID).append(" ").append(result.level).append("  ");
+                sb.append(result.SSID).append(" ").append(result.level).append(",");
             }
-            Log.d(TAG, sb.toString());
+            return sb.toString();
         } catch (Exception e) {
             Log.d(TAG, "scanAndGetWifiList error: " + e.getMessage());
+            return "NULL";
         }
     }
 
@@ -94,7 +101,7 @@ public class WifiRelativeInfo {
             @SuppressWarnings("deprecation")
             WifiInfo wifiInfo = m_wifiManager.getConnectionInfo();
             if (wifiInfo == null) {
-                return "WifiInfo is null";
+                return "NULL";
             }
             String ssid = wifiInfo.getSSID();
             if (ssid.startsWith("\"") && ssid.endsWith("\"")) {
@@ -102,7 +109,7 @@ public class WifiRelativeInfo {
             }
             return ssid;
         } catch (Exception e) {
-            return "getCurrentWifiSSID error: " + e.getMessage();
+            return "NULL";
         }
     }
 
@@ -131,16 +138,19 @@ public class WifiRelativeInfo {
                     // 连接成功
                     Log.d(TAG, "Connected to Wi-Fi: " + ssid);
                     cm.bindProcessToNetwork(network); // 可选，将 app 网络绑定到指定 Wi-Fi
+                    connectSuccess(CONNECTSUCCESS);
                 }
                 @Override
                 public void onUnavailable()
                 {
                     Log.d(TAG, "Failed to connect to Wi-Fi: " + ssid);
+                    connectSuccess(CONNECTERROR);
                 }
                 @Override
                 public void onLost(Network network)
                 {
                     Log.d(TAG, "Wi-Fi disconnected: " + ssid);
+                    connectSuccess(DISCONNECTED);
                 }
             });
             Log.d(TAG, "Requesting connection to Wi-Fi: " + ssid);

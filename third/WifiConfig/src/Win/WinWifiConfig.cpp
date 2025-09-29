@@ -1,13 +1,11 @@
 #include "WinWifiConfig.h"
+#include <print>
+#include <span>
 
 #if defined(_WIN32)
 #include <windows.h>
 #include <wlanapi.h>
 #pragma comment(lib, "wlanapi.lib")
-#endif
-
-#include <print>
-#include <span>
 
 WinWifiConfig::WinWifiConfig(WifiConfigBase* _parent) : WifiConfigBase{_parent}
 {
@@ -82,31 +80,6 @@ auto WinWifiConfig::init() noexcept -> void
     }
 }
 
-auto WinWifiConfig::scanWifiDevice() noexcept -> bool
-{
-    bool tag{false};
-    do
-    {
-        PWLAN_INTERFACE_INFO_LIST pIfList{nullptr};
-        if (DWORD dwResult{WlanEnumInterfaces(m_hClient, nullptr, &pIfList)}; dwResult != ERROR_SUCCESS)
-        {
-            tag = false;
-            break;
-        }
-        for (auto& iface : std::span{pIfList->InterfaceInfo, pIfList->dwNumberOfItems})
-        {
-            if (DWORD dwScan{WlanScan(m_hClient, &iface.InterfaceGuid, nullptr, nullptr, nullptr)}; dwScan != ERROR_SUCCESS)
-            {
-                std::println("WlanScan failed, error code: {}", dwScan);
-                continue;
-            }
-            tag = true;
-        }
-        WlanFreeMemory(pIfList);
-    } while (false);
-    return tag;
-}
-
 auto WinWifiConfig::searchWifiDevice() noexcept -> std::map<std::string, std::string>
 {
     PWLAN_INTERFACE_INFO_LIST          pIfList{nullptr};
@@ -118,6 +91,12 @@ auto WinWifiConfig::searchWifiDevice() noexcept -> std::map<std::string, std::st
     // 遍历所有 WLAN 接口
     for (auto& iface : std::span{pIfList->InterfaceInfo, pIfList->dwNumberOfItems})
     {
+        // 先触发扫描
+        if (DWORD dwScan{WlanScan(m_hClient, &iface.InterfaceGuid, nullptr, nullptr, nullptr)};
+            dwScan != ERROR_SUCCESS)
+        {
+            continue;
+        }
         PWLAN_AVAILABLE_NETWORK_LIST pBssList{nullptr};
         if (DWORD res{WlanGetAvailableNetworkList(m_hClient, &iface.InterfaceGuid, 0, nullptr, &pBssList)}; res != ERROR_SUCCESS || !pBssList)
         {
@@ -306,3 +285,4 @@ auto WinWifiConfig::connectWifi2Ssid(const std::string& _ssid, const std::string
     }
     return true;
 }
+#endif

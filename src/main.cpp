@@ -6,7 +6,12 @@
 #include <QJniEnvironment>
 #include <QQuickStyle>
 #include "AndroidWifiConfig.h"
+#include "AndroidSettings.h"
 #endif
+
+#include <QTimer>
+
+// #include "WinWifiConfig.h"
 
 int main(int argc, char* argv[])
 {
@@ -21,8 +26,15 @@ int main(int argc, char* argv[])
     engine.addImportPath("qrc:/");
     engine.load(QUrl{"qrc:/App/view/Main.qml"});
 #if defined(ANDROID)
-    AndroidWifiConfig androidWifiConfig{};
+    // AndroidWifiConfig* androidWifiConfig{AndroidWifiConfig::instance()};
+    AndroidSettings* androidSettings{AndroidSettings::instance()};
+    QTimer::singleShot(1500, androidSettings, [=]() {
+        androidSettings->setScreenBrightness(0.91);
+    });
+
 #endif
+    // WinWifiConfig winWifiConfig{};
+    // winWifiConfig.searchWifiDevice();
 
     return QGuiApplication::exec();
 }

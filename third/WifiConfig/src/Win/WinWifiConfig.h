@@ -13,8 +13,6 @@ private:
     auto init() noexcept -> void override;
 
 public:
-    auto scanWifiDevice() noexcept -> bool override;
-
     auto searchWifiDevice() noexcept -> std::map<std::string, std::string> override;
 
     auto curConnectedWifi() noexcept -> std::string override;
