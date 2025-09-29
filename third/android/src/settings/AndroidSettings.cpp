@@ -42,7 +42,7 @@ auto AndroidSettings::init() noexcept -> void
 
 auto AndroidSettings::setScreenBrightness(float _value) noexcept -> void
 {
-    m_settingObject->callMethod<void>("setScreenBrightness", "(F)V", jfloat(_value));
+    m_settingObject->callMethod<void>("setSystemBrightness", "(I)V", jint(_value));
 }
 
 #endif
