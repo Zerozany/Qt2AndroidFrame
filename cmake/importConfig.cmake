@@ -43,4 +43,75 @@ elseif(ANDROID)
         # Android 环境变量
         QT_ANDROID_ENVIRONMENT_VARIABLES "qt_android_no_exit_call=1"
     )
+
+    # 精确位置权限 (API 1+，Android 12+ 可添加 neverForLocation)
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.ACCESS_FINE_LOCATION
+        ATTRIBUTES
+        minSdkVersion 1
+        usesPermissionFlags neverForLocation
+    )
+
+    # 获取 Wi-Fi 状态权限 (API 1+)
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.ACCESS_WIFI_STATE
+        ATTRIBUTES
+        minSdkVersion 1
+    )
+
+    # 修改 Wi-Fi 状态权限 (API 1+)
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.CHANGE_WIFI_STATE
+        ATTRIBUTES
+        minSdkVersion 1
+    )
+
+    # 修改网络状态权限 (API 1+)
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.CHANGE_NETWORK_STATE
+        ATTRIBUTES
+        minSdkVersion 1
+    )
+
+    # 获取网络状态权限 (API 1+)
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.ACCESS_NETWORK_STATE
+        ATTRIBUTES
+        minSdkVersion 1
+    )
+
+    # 修改系统设置权限 (API 1+)
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.WRITE_SETTINGS
+        ATTRIBUTES
+        minSdkVersion 1
+    )
+
+    # 保持屏幕唤醒权限 (API 1+)
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.WAKE_LOCK
+        ATTRIBUTES
+        minSdkVersion 1
+    )
+
+    # 前台服务权限 (API 28+)
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.FOREGROUND_SERVICE
+        ATTRIBUTES
+        minSdkVersion 28
+    )
+
+    # 忽略电池优化 (API 23+)
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+        ATTRIBUTES
+        minSdkVersion 23
+    )
+
+    # 监听系统启动广播 (API 1+)
+    qt_add_android_permission(${PROJECT_NAME}
+        NAME android.permission.RECEIVE_BOOT_COMPLETED
+        ATTRIBUTES
+        minSdkVersion 1
+    )
 endif()
