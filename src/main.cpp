@@ -24,13 +24,14 @@ int main(int argc, char* argv[])
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed, &app, [] { QCoreApplication::exit(-1); }, Qt::QueuedConnection);
     engine.addImportPath("qrc:/");
     engine.load(QUrl{"qrc:/App/view/Main.qml"});
+    // QQuickWindow* window = qobject_cast<QQuickWindow*>(engine.rootObjects().first());
 
 #if defined(ANDROID)
     // AndroidWifiConfig* androidWifiConfig{AndroidWifiConfig::instance()};
-    AndroidSettings* androidSettings{AndroidSettings::instance()};
-    QTimer::singleShot(500, androidSettings, [androidSettings]() {
-        androidSettings->setScreenBrightness(255);
-    });
+    // AndroidSettings* androidSettings{AndroidSettings::instance()};
+    // QTimer::singleShot(500, androidSettings, [androidSettings]() {
+    //     androidSettings->setScreenBrightness(255);
+    // });
 #endif
     // WinWifiConfig winWifiConfig{};
     // winWifiConfig.searchWifiDevice();

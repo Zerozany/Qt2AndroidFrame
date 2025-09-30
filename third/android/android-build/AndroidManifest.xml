@@ -21,6 +21,12 @@
     <!-- 修改系统设置权限 -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <!-- 保持屏幕唤醒权限 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- 需要使用 前台服务 (Foreground Service) 的权限 -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <!-- 电池优化相关的特殊权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- 允许你的应用监听 系统广播 -->
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -49,13 +55,16 @@
             android:label="-- %%INSERT_APP_NAME%% --"
             android:launchMode="singleTop"
             android:screenOrientation="unspecified"
-            android:exported="true">
-            <!-- Activity 节点，定义应用入口 Activity -->
+            android:exported="true"
+            android:enabled="true"
+            android:foregroundServiceType="dataSync|location|mediaPlayback">
+            <!-- Activity 节点，定义应用入口 Activity android:name="com.sonixbeauty.activity.AppActivity" -->
             <!-- 配置变更时 Activity 不重启，保持状态 -->
             <!-- Activity 名称占位符 -->
             <!-- 单例启动模式，避免重复实例 -->
             <!-- 屏幕方向未指定，由系统决定 -->
             <!-- 允许外部应用启动该 Activity -->
+            <!-- 这个前台服务同时会用于 数据同步 和 定位 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
