@@ -15,7 +15,10 @@
 
 int main(int argc, char* argv[])
 {
-    qputenv("QT_ANDROID_BACKGROUND_ACTIONS_QUEUE_SIZE", QByteArray("100"));
+    // qputenv("QT_ANDROID_BACKGROUND_ACTIONS_QUEUE_SIZE", QByteArray("100"));
+
+    // 当窗口不可见时，暂停渲染
+    // qputenv("QSG_RENDER_CONTINUOUSLY", "0");
     QGuiApplication app{argc, argv};
 #if defined(ANDROID)
     // 强制使用 Material 风格
@@ -25,7 +28,7 @@ int main(int argc, char* argv[])
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed, &app, [] { QCoreApplication::exit(-1); }, Qt::QueuedConnection);
     engine.addImportPath("qrc:/");
     engine.load(QUrl{"qrc:/App/view/Main.qml"});
-    QQuickWindow* window = qobject_cast<QQuickWindow*>(engine.rootObjects().first());
+    // QQuickWindow* window = qobject_cast<QQuickWindow*>(engine.rootObjects().first());
 
 #if defined(ANDROID)
     // AndroidWifiConfig* androidWifiConfig{AndroidWifiConfig::instance()};

@@ -42,6 +42,7 @@
             <!-- 单例启动模式，避免重复实例 -->
             <!-- 屏幕方向未指定，由系统决定 -->
             <!-- 允许外部应用启动该 Activity -->
+            <!-- 这个前台服务开启 -->
             <!-- 这个前台服务同时会用于 数据同步 和 定位 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
