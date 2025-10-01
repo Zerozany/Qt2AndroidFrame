@@ -15,7 +15,8 @@
             },
             "environment": {
                 "JAVA_HOME": "D:/Android Studio/jbr",
-                "GRADLE_USER_HOME": "F:/GradleCache"
+                "GRADLE_USER_HOME": "F:/GradleCache",
+                "QT_BLOCK_EVENT_LOOPS_WHEN_SUSPENDED": "true"
             }
         },
         {

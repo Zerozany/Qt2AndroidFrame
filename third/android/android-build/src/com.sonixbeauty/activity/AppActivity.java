@@ -30,7 +30,6 @@ public class AppActivity extends org.qtproject.qt.android.bindings.QtActivity {
     public void onPause()
     {
         Log.i(TAG, "[AppActivity::onPause]");
-
         super.onPause();
     }
 
