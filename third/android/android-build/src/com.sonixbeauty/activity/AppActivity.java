@@ -9,18 +9,26 @@ import android.view.WindowManager;
 public class AppActivity extends org.qtproject.qt.android.bindings.QtActivity {
 
     private static final String TAG = "SonixBeauty";
-    private PowerManager.WakeLock wakeLock;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        Log.i(TAG, "[AppActivity::onCreate] Start");
+        Log.i(TAG, "[AppActivity::onCreate]");
+    }
+
+    @Override
+    public void onStart()
+    {
+        // 当应用程序不在前台时
+        Log.i(TAG, "[AppActivity::onStart]");
+        super.onStart();
     }
 
     @Override
     public void onResume()
     {
+        // 当 Activity 移动到前台时
         Log.i(TAG, "[AppActivity::onResume]");
 
         super.onResume();
@@ -29,8 +37,19 @@ public class AppActivity extends org.qtproject.qt.android.bindings.QtActivity {
     @Override
     public void onPause()
     {
+        // 当应用程序不在前台时
         Log.i(TAG, "[AppActivity::onPause]");
+
         super.onPause();
+    }
+
+    @Override
+    public void onStop()
+    {
+        // 当应用程序不在前台时
+        Log.i(TAG, "[AppActivity::onStop]");
+
+        super.onStop();
     }
 
     @Override
