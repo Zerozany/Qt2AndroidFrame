@@ -13,8 +13,6 @@ public:
     ~ViewEngine() noexcept = default;
 
 private:
-    auto initApplication() noexcept -> void;
-
     auto initEngine() noexcept -> void;
 
     auto initWindow() noexcept -> void;
@@ -22,7 +20,7 @@ private:
     auto connectSignal2Slot() noexcept -> void;
 
 private:
-    QGuiApplication*       m_guiApplication{};
+    QGuiApplication*       m_guiApplication{nullptr};
     QQmlApplicationEngine* m_qmlApplicationEngine{nullptr};
     QQuickWindow*          m_quickWindow{nullptr};
 };

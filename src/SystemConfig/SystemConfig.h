@@ -9,7 +9,9 @@ public:
     ~SystemConfig() noexcept = default;
 
 private:
+    auto setAppEnv() noexcept -> void;
+
     auto setAppStyle() noexcept -> void;
 
-    auto setAppEnv() noexcept -> void;
+    auto setAppAttribute() noexcept -> void;
 };

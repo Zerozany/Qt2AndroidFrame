@@ -4,19 +4,9 @@
 
 ViewEngine::ViewEngine(QGuiApplication* _guiApplication, QQmlApplicationEngine* _qmlApplicationEngine, QObject* _parent) : QObject{_parent}, m_guiApplication{_guiApplication}, m_qmlApplicationEngine{_qmlApplicationEngine}
 {
-    std::invoke(&ViewEngine::initApplication, this);
     std::invoke(&ViewEngine::initEngine, this);
     std::invoke(&ViewEngine::initWindow, this);
     std::invoke(&ViewEngine::connectSignal2Slot, this);
-}
-
-auto ViewEngine::initApplication() noexcept -> void
-{
-#if !defined(Q_OS_ANDROID)
-    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QGuiApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
-#endif
-    QGuiApplication::setAttribute(Qt::AA_CompressHighFrequencyEvents);
 }
 
 auto ViewEngine::initEngine() noexcept -> void

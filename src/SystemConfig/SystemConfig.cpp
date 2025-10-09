@@ -1,12 +1,19 @@
 #include "SystemConfig.h"
 #include <QQuickStyle>
-#include <QCoreApplication>
+#include <QGuiApplication>
 #include <QDir>
 
 SystemConfig::SystemConfig(QObject* _parent) : QObject{_parent}
 {
-    std::invoke(&SystemConfig::setAppStyle, this);
     std::invoke(&SystemConfig::setAppEnv, this);
+    std::invoke(&SystemConfig::setAppStyle, this);
+    std::invoke(&SystemConfig::setAppAttribute, this);
+}
+
+auto SystemConfig::setAppEnv() noexcept -> void
+{
+    qputenv("QSG_RENDER_LOOP", "basic");
+    qputenv("QSG_RENDER_CONTINUOUSLY", "0");
 }
 
 auto SystemConfig::setAppStyle() noexcept -> void
@@ -18,13 +25,11 @@ auto SystemConfig::setAppStyle() noexcept -> void
 #endif
 }
 
-auto SystemConfig::setAppEnv() noexcept -> void
+auto SystemConfig::setAppAttribute() noexcept -> void
 {
-    qputenv("QSG_RENDER_LOOP", "basic");
-    qputenv("QSG_RENDER_CONTINUOUSLY", "0");
-#if defined(Q_OS_ANDROID)
-
-#elif defined(Q_OS_WIN)
-    qputenv("XDG_CACHE_HOME", QDir(QCoreApplication::applicationDirPath()).filePath("tmp").toUtf8());
+#if !defined(Q_OS_ANDROID)
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QGuiApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
 #endif
+    QGuiApplication::setAttribute(Qt::AA_CompressHighFrequencyEvents);
 }
