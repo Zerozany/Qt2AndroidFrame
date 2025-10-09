@@ -3,13 +3,11 @@ import QtQuick.Controls
 import SonixBeautyUi
 
 Window {
-    id: mainWindow
-    title: qsTr("Hello World")
-    color: "#1b5acf"
+    id: appWindow
+    color: ThemeManager.currentTheme.backgroundColor
 
     // 设置全屏
     visibility: Window.FullScreen
-
     // 无边框
     flags: Qt.FramelessWindowHint
 
@@ -20,19 +18,9 @@ Window {
             width: 130
             height: 60
             text: "Click me"
-        }
-
-        Button {
-            width: 130
-            height: 60
-            text: "No Click me"
+            onClicked: ThemeManager.setTheme(Themes.darkTheme)
         }
     }
-
-    ApplicationTip {
-        tip: "Successfully"
-    }
-    
 
     Item {
         Component.onCompleted: {}

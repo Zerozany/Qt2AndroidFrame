@@ -59,6 +59,4 @@ QtObject {
             "colorNormal": "#252C2D"
         }
     }
-    // 运动传感器开关
-    property bool motionSensor: true
 }
