@@ -20,9 +20,13 @@ Window {
             text: "Click me"
             onClicked: ThemeManager.setTheme(Themes.darkTheme)
         }
+
+        SButton {
+            width: 130
+            height: 60
+            text: "SButton"
+        }
     }
 
-    Item {
-        Component.onCompleted: {}
-    }
+    Component.onCompleted: {}
 }

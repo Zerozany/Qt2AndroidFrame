@@ -3,18 +3,18 @@ import QtQuick
 
 QtObject {
     property var lightTheme: ({
-            backgroundColor: "#ffffff",
+            backgroundColor: "#FFFDFB",
             textColor: "#333333",
-            buttonColor: "#3498db",
-            buttonTextColor: "#ffffff",
+            textPressedColor: "#DCDCDC",
+            buttonColor: "#FFFFFF",
             buttonRadius: 6
         })
 
     property var darkTheme: ({
             backgroundColor: "#222222",
-            textColor: "#f0f0f0",
+            textColor: "#333333",
+            textPressedColor: "#DCDCDC",
             buttonColor: "#1abc9c",
-            buttonTextColor: "#222222",
             buttonRadius: 6
         })
 }

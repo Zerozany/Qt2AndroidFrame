@@ -39,7 +39,7 @@ auto ViewEngine::connectSignal2Slot() noexcept -> void
             case Qt::ApplicationActive:
             {
                 QTimer::singleShot(800, [this]() {
-                    if (m_quickWindow && m_quickWindow->isSceneGraphInitialized())
+                    if (m_quickWindow->isSceneGraphInitialized())
                     {
                         m_quickWindow->show();
                         qDebug() << "Surface ready, show window";
