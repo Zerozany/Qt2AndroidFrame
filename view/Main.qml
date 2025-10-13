@@ -4,7 +4,7 @@ import SonixBeautyUi
 
 Window {
     id: appWindow
-    color: ThemeManager.currentTheme.backgroundColor
+    color: ThemeManager.currentTheme.backgroundColor["light"]
 
     // 设置全屏
     visibility: Window.FullScreen
@@ -14,17 +14,15 @@ Window {
     Column {
         anchors.centerIn: parent
 
-        Button {
-            width: 130
-            height: 60
-            text: "Click me"
-            onClicked: ThemeManager.setTheme(Themes.darkTheme)
-        }
-
         SButton {
-            width: 130
-            height: 60
-            text: "SButton"
+            id: myBtn
+            width: 110
+            height: 45
+            text: qsTr("设置")
+            source: "qrc:/view/resource/setting.png"
+            onClicked: {
+                myBtn.text = qsTr("setting");
+            }
         }
     }
 

@@ -21,6 +21,18 @@ foreach(HEADERDIR ${INCLUDEDIR})
     endif()
 endforeach()
 
+file(GLOB RESOURCES_LIST
+    RELATIVE ${CMAKE_SOURCE_DIR}
+    ${CMAKE_SOURCE_DIR}/view/resource/*.png
+    ${CMAKE_SOURCE_DIR}/view/resource/**/*.png
+)
+
+qt_add_resources(${PROJECT_NAME} "Main"
+    PREFIX "/"
+    FILES
+    ${RESOURCES_LIST}
+)
+
 file(GLOB QFILES RELATIVE ${CMAKE_SOURCE_DIR}
     "${CMAKE_SOURCE_DIR}/view/**/*.qml"
     "${CMAKE_SOURCE_DIR}/view/*.qml"

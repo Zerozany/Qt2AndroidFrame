@@ -5,9 +5,9 @@ Rectangle {
     property string tip: ""
     property int interval: 2000
 
-    width: textTip.width + GlobalVar.dpW(120)
-    height: textTip.height + GlobalVar.dpH(10)
-    radius: GlobalVar.dpMin(5)
+    width: textTip.width + 120
+    height: textTip.height + 10
+    radius: 6
     color: "#dd000000"
     anchors {
         centerIn: parent ? parent : null
@@ -56,7 +56,7 @@ Rectangle {
         anchors.centerIn: parent
         style: Text.Outline
         styleColor: "black"
-        font.pointSize: GlobalVar.theme.fontSize.sizeM
+        // font.pointSize: GlobalVar.theme.fontSize.sizeM
         // font.family: GlobalVar.theme.fontFamily[appSetting.language]
         Component.onCompleted: {
             Qt.callLater(function () {
