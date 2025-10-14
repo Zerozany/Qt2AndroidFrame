@@ -1,3 +1,9 @@
+file(GLOB SRCLIST RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/**/*.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/**/*.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/**/*.cpp"
+)
+
 file(GLOB QFILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
     "${CMAKE_CURRENT_SOURCE_DIR}/content/*.qml"
     "${CMAKE_CURRENT_SOURCE_DIR}/content/**/*.qml"
@@ -17,7 +23,11 @@ qt_add_qml_module(${PROJECT_NAME}
     URI "${PROJECT_NAME}"
     VERSION 1.0
     RESOURCE_PREFIX "/"
-    NO_PLUGIN
     QML_FILES ${QFILES} ${QMLSINGLETONS}
+    SOURCES ${SRCLIST}
     OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${PROJECT_NAME}"
+)
+
+target_include_directories(${PROJECT_NAME} PUBLIC
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/ThemeManager"
 )

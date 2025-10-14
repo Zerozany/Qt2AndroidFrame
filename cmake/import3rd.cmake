@@ -7,7 +7,7 @@ endif()
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
-    SonixBeautyUi
+    SonixBeautyUiplugin
     WifiConfig
     $<$<PLATFORM_ID:Android>:JNIModule>
 )
