@@ -42,7 +42,6 @@ auto ViewEngine::connectSignal2Slot() noexcept -> void
                     if (m_quickWindow->isSceneGraphInitialized())
                     {
                         m_quickWindow->show();
-                        qDebug() << "Surface ready, show window";
                     }
                 });
                 break;
@@ -58,7 +57,6 @@ auto ViewEngine::connectSignal2Slot() noexcept -> void
             case Qt::ApplicationSuspended:
             {
                 m_quickWindow->hide();
-                qDebug() << "App background → hide window";
                 break;
             }
             default:

@@ -6,23 +6,24 @@ _Pragma("once");
 
 class QJSEngine;
 class QQmlEngine;
+class QSettings;
 
 class ThemeManager : public QObject
 {
     Q_OBJECT
     QML_SINGLETON
     QML_ELEMENT
+    Q_PROPERTY(QString currentThemeName READ currentThemeName WRITE setCurrentThemeName NOTIFY currentThemeNameChanged);
     Q_PROPERTY(QVariantMap currentTheme READ currentTheme WRITE setCurrentTheme NOTIFY currentThemeChanged);
-    Q_PROPERTY(QString fontFamily READ fontFamily WRITE setFontFamily NOTIFY fontFamilyChanged);
 
 public:
     ~ThemeManager() noexcept = default;
 
-    Q_INVOKABLE QVariantMap currentTheme() const;
-    Q_INVOKABLE void        setCurrentTheme(const QVariantMap& _currentTheme);
+    Q_INVOKABLE QString currentThemeName() const;
+    Q_INVOKABLE void    setCurrentThemeName(const QString& _currentThemeName);
 
-    Q_INVOKABLE QString fontFamily() const;
-    Q_INVOKABLE void    setFontFamily(const QString& _fontFamily);
+    Q_INVOKABLE QVariantMap currentTheme() const;
+    void                    setCurrentTheme(const QVariantMap& _currentTheme);
 
 public:
     static ThemeManager* create(QQmlEngine*, QJSEngine*);
@@ -30,12 +31,22 @@ public:
 private:
     explicit(true) ThemeManager(QObject* _parent = nullptr);
 
+    auto init() noexcept -> void;
+
+    auto connectSignal2Slot() noexcept -> void;
+
 Q_SIGNALS:
     void currentThemeChanged();
 
     void fontFamilyChanged();
 
+    void currentThemeNameChanged();
+
+private Q_SLOTS:
+    void onCurrentThemeNameChanged();
+
 private:
-    QVariantMap m_currentTheme{lightTheme};
-    QString     m_fontFamily{fontFamilys["en_US"].toString()};
+    QString     m_currentThemeName{};
+    QVariantMap m_currentTheme{};
+    QSettings*  m_settings{nullptr};
 };

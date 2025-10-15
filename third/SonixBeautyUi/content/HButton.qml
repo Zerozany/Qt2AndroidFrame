@@ -10,6 +10,7 @@ Item {
     readonly property color buttonColor: ThemeManager.currentTheme["buttonColor"]
     readonly property var buttonRadius: ThemeManager.currentTheme["buttonRadius"]
     readonly property var textColorPressed: ThemeManager.currentTheme["textColorPressed"]
+    // readonly property var textFontFamily: ThemeManager.fontFamily
 
     signal clicked
 
@@ -36,7 +37,7 @@ Item {
                 color: root.textColor
                 text: root.text
                 font.pixelSize: 14
-                font.family: ThemeManager.fontFamily
+                // font.family: root.textFontFamily
                 verticalAlignment: Text.AlignVCenter
                 anchors.verticalCenter: parent.verticalCenter
             }
