@@ -29,11 +29,21 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 if(WIN32)
-    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMAND "$ENV{Qt6_BIN_DIR}/windeployqt.exe" $<$<CONFIG:Debug>:--debug> $<$<CONFIG:Release>:--release>
-        --qmldir "${CMAKE_SOURCE_DIR}/view"
-        $<TARGET_FILE:${PROJECT_NAME}>
-    )
+    # 检查目标类型，只有可执行文件才使用 windeployqt
+    get_target_property(TARGET_TYPE ${PROJECT_NAME} TYPE)
+
+    if(TARGET_TYPE STREQUAL "EXECUTABLE")
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+            COMMAND "$ENV{Qt6_BIN_DIR}/windeployqt.exe"
+                $<$<CONFIG:Debug>:--debug>
+                $<$<CONFIG:Release>:--release>
+                --qmldir "${CMAKE_SOURCE_DIR}/view"
+                $<TARGET_FILE:${PROJECT_NAME}>
+            COMMENT "Deploying Qt dependencies for ${PROJECT_NAME}"
+        )
+    else()
+        message(STATUS "skip windeployqt: ${PROJECT_NAME} It is not an executable file")
+    endif()
 elseif(ANDROID)
     # # Android Studio 实时查看Debug、QML打印
     # 连接模拟器

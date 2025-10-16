@@ -1,14 +1,12 @@
 _Pragma("once");
-#include <QObject>
 #include <memory>
 #include <spdlog/spdlog.h>
 
-class Logger : public QObject
+class Logger
 {
-    Q_OBJECT
 public:
-    explicit(true) Logger(QObject* _parent = nullptr);
-    ~Logger() noexcept = default;
+    explicit(true) Logger();
+    ~Logger() noexcept;
 
 public:
     inline static std::shared_ptr<spdlog::logger> fileLogger{nullptr};
