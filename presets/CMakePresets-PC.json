@@ -4,12 +4,13 @@
         {
             "name": "BasePC",
             "hidden": true,
-            "cacheVariables": {
-                "CMAKE_PREFIX_PATH": "D:/Qt/6.9.2/msvc2022_64"
-            },
             "environment": {
                 "VCINSTALLDIR": "D:/MSVC/BuildTools/VC",
-                "PATH": "D:/Qt/6.9.2/msvc2022_64/bin;$PATH"
+                "Qt6_BIN_DIR": "D:/Qt/6.9.2/msvc2022_64/bin"
+            },
+            "cacheVariables": {
+                "CMAKE_PREFIX_PATH": "D:/Qt/6.9.2/msvc2022_64",
+                "CMAKE_TOOLCHAIN_FILE": "D:/vcpkg/scripts/buildsystems/vcpkg.cmake"
             }
         },
         {

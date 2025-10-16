@@ -10,7 +10,7 @@ endif()
 
 if(WIN32)
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMAND windeployqt.exe $<$<CONFIG:Debug>:--debug> $<$<CONFIG:Release>:--release>
+        COMMAND "$ENV{Qt6_BIN_DIR}/windeployqt.exe" $<$<CONFIG:Debug>:--debug> $<$<CONFIG:Release>:--release>
         --qmldir "${CMAKE_SOURCE_DIR}/view"
         $<TARGET_FILE:${PROJECT_NAME}>
     )
