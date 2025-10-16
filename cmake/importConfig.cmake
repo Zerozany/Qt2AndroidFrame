@@ -4,8 +4,28 @@ target_compile_features(${PROJECT_NAME}
 )
 
 if(MSVC)
-    add_compile_options(/utf-8)
-    add_compile_options("/FS")
+    target_compile_options(${PROJECT_NAME}
+        PRIVATE
+        "/utf-8"
+    )
+
+    target_compile_options(${PROJECT_NAME}
+        PRIVATE
+        "/FS"
+    )
+
+    target_compile_options(${PROJECT_NAME} PRIVATE
+        "$<$<CONFIG:Debug>:/Od>"
+        "$<$<CONFIG:Release>:/Ox>"
+    )
+elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    target_compile_options(${PROJECT_NAME} PRIVATE
+        "-fdiagnostics-color=always" # 彩色输出诊断信息
+        "-Wall" # 开启大部分警告
+        "-Wextra" # 更多警告
+        "$<$<CONFIG:Debug>:-O0>" # Debug 禁用优化
+        "$<$<CONFIG:Release>:-O3>" # Release 最大优化
+    )
 endif()
 
 if(WIN32)
@@ -32,7 +52,6 @@ elseif(ANDROID)
 
     set_target_properties(${PROJECT_NAME} PROPERTIES
         QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_SOURCE_DIR}/third/android/android-build"
-        QT_ANDROID_COMPILE_SDK_VERSION "android-35"
         QT_ANDROID_PACKAGE_NAME "${PACKAGE_NAME}"
         QT_ANDROID_APP_ICON "@drawable/ic_launcher"
         QT_ANDROID_APP_NAME "${APP_NAME}" # 应用名称
@@ -40,9 +59,7 @@ elseif(ANDROID)
         QT_ANDROID_VERSION_CODE 1 # 应用版本号
         QT_ANDROID_VERSION_NAME "${VERSION_NAME}" # 版本号名称
         QT_ANDROID_APPLICATION_ARGUMENTS "--appname=${APP_NAME} --version=${VERSION_NAME}" # 启动参数
-
-        # Android 环境变量
-        QT_ANDROID_ENVIRONMENT_VARIABLES "qt_android_no_exit_call=1"
+        QT_ANDROID_ENVIRONMENT_VARIABLES "qt_android_no_exit_call=1" # Android 环境变量
     )
 
     # 精确位置权限 (API 1+，Android 12+ 可添加 neverForLocation)

@@ -1,6 +1,6 @@
 file(GLOB SOURCEFILES
-    ${CMAKE_SOURCE_DIR}/src/**/*.h
-    ${CMAKE_SOURCE_DIR}/src/**/*.cpp
+    "${CMAKE_SOURCE_DIR}/src/**/*.h"
+    "${CMAKE_SOURCE_DIR}/src/**/*.cpp"
 )
 
 target_sources(${PROJECT_NAME}
@@ -9,7 +9,7 @@ target_sources(${PROJECT_NAME}
 )
 
 file(GLOB INCLUDEDIR
-    ${CMAKE_SOURCE_DIR}/src/*
+    "${CMAKE_SOURCE_DIR}/src/*"
 )
 
 foreach(HEADERDIR ${INCLUDEDIR})
@@ -23,8 +23,8 @@ endforeach()
 
 file(GLOB RESOURCES_LIST
     RELATIVE ${CMAKE_SOURCE_DIR}
-    ${CMAKE_SOURCE_DIR}/view/resource/*.png
-    ${CMAKE_SOURCE_DIR}/view/resource/**/*.png
+    "${CMAKE_SOURCE_DIR}/view/resource/*.png"
+    "${CMAKE_SOURCE_DIR}/view/resource/**/*.png"
 )
 
 qt_add_resources(${PROJECT_NAME} "Main"

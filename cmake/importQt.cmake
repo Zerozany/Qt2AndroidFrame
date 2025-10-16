@@ -16,7 +16,7 @@ qt_standard_project_setup(
 )
 
 qt_add_executable(${PROJECT_NAME}
-    ${CMAKE_SOURCE_DIR}/src/main.cpp
+    "${CMAKE_SOURCE_DIR}/src/main.cpp"
 )
 
 target_link_libraries(${PROJECT_NAME}
