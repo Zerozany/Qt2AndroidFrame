@@ -16,7 +16,7 @@ auto ViewEngine::initEngine() noexcept -> void
         return;
     }
     m_qmlApplicationEngine->addImportPath("qrc:/");
-    m_qmlApplicationEngine->load(QUrl("qrc:/App/view/Main.qml"));
+    m_qmlApplicationEngine->load(QUrl("qrc:/SonixBeautyStudio/view/Main.qml"));
 }
 
 auto ViewEngine::initWindow() noexcept -> void

@@ -1,33 +1,50 @@
 import QtQuick
 
 Rectangle {
-    id: applicationTip
-    property string tip: ""
-    property int interval: 2000
+    id: root
+    radius: elementRadius
+    color: elementColor
+    x: window.width / 2 - root.width / 2
+    y: window.height / 4
+    width: window.width / 3
 
-    width: textTip.width + 120
-    height: textTip.height + 10
-    radius: 6
-    color: "#dd000000"
-    anchors {
-        centerIn: parent ? parent : null
+    property var tipText: null
+    property var interval: 2000
+    property var window: null
+
+    readonly property var elementRadius: ThemeManager.currentTheme["elementRadius"]
+    readonly property var elementColor: ThemeManager.currentTheme["elementColor"]
+    readonly property color textColor: ThemeManager.currentTheme["textColor"]
+
+    Text {
+        id: textTiper
+        width: root.width
+        anchors.margins: 5
+        color: root.textColor
+        text: root.tipText
+        wrapMode: Text.WordWrap
+        font.pointSize: 14
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
     }
-    border {
-        color: "#88ffffff"
-        width: 1
+
+    Component.onCompleted: {
+        if (window) {
+            root.height = textTiper.implicitHeight;
+        }
     }
 
     SequentialAnimation {
         running: true
         ParallelAnimation {
             OpacityAnimator {
-                target: applicationTip
+                target: root
                 duration: 300
                 from: 0
                 to: 1
             }
             ScaleAnimator {
-                target: applicationTip
+                target: root
                 duration: 300
                 from: 0.8
                 to: 1
@@ -35,35 +52,15 @@ Rectangle {
             }
         }
         PauseAnimation {
-            duration: applicationTip.interval
+            duration: root.interval
         }
         OpacityAnimator {
-            target: applicationTip
+            target: root
             duration: 300
             to: 0
         }
         ScriptAction {
-            script: applicationTip.destroy()
-        }
-    }
-
-    Text {
-        id: textTip
-        text: parent.tip
-        color: "white"
-        horizontalAlignment: Text.AlignHCenter
-        wrapMode: Text.Wrap
-        anchors.centerIn: parent
-        style: Text.Outline
-        styleColor: "black"
-        // font.pointSize: GlobalVar.theme.fontSize.sizeM
-        // font.family: GlobalVar.theme.fontFamily[appSetting.language]
-        Component.onCompleted: {
-            Qt.callLater(function () {
-                if (applicationTip.parent) {
-                    width = Math.min(width, applicationTip.parent.width / 2);
-                }
-            });
+            script: root.destroy()
         }
     }
 }

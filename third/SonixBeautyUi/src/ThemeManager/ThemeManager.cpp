@@ -50,7 +50,7 @@ ThemeManager::ThemeManager(QObject* _parent) : QObject{_parent}
 auto ThemeManager::init() noexcept -> void
 {
     m_settings = new QSettings{QDir{QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)}.filePath("config/settings.ini"), QSettings::IniFormat};
-    qDebug() << m_settings->fileName();
+    // qDebug() << m_settings->fileName();
     m_settings->beginGroup("Themes");
     if ((m_settings->contains("ThemeName") && !m_settings->value("ThemeName").isNull()) || !m_settings->contains("ThemeName"))
     {

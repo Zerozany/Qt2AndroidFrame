@@ -8,7 +8,7 @@ Item {
 
     readonly property color textColor: ThemeManager.currentTheme["textColor"]
     readonly property color buttonColor: ThemeManager.currentTheme["buttonColor"]
-    readonly property var buttonRadius: ThemeManager.currentTheme["buttonRadius"]
+    readonly property var elementRadius: ThemeManager.currentTheme["elementRadius"]
     readonly property var textColorPressed: ThemeManager.currentTheme["textColorPressed"]
     // readonly property var textFontFamily: ThemeManager.fontFamily
 
@@ -16,7 +16,7 @@ Item {
 
     Rectangle {
         anchors.fill: parent
-        radius: root.buttonRadius
+        radius: root.elementRadius
         color: root.buttonColor
 
         Column {
@@ -37,6 +37,7 @@ Item {
                 color: root.textColor
                 text: root.text
                 font.pixelSize: 14
+                wrapMode: Text.WordWrap
                 // font.family: root.textFontFamily
                 verticalAlignment: Text.AlignVCenter
                 anchors.horizontalCenter: parent.horizontalCenter

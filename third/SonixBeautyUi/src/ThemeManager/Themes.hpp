@@ -9,7 +9,8 @@ namespace Themes
         {"textColor", QColor{"#0e0d0d"}},
         {"textColorPressed", QColor{"#cdcdcd"}},
         {"buttonColor", QColor{"#FFFFFF"}},
-        {"buttonRadius", 6},
+        {"elementRadius", 6},
+        {"elementColor", QColor{"#FFFFFF"}},
     };
 
     inline QVariantMap darkTheme{
@@ -17,7 +18,9 @@ namespace Themes
         {"textColor", QColor{"#0e0d0d"}},
         {"textColorPressed", QColor{"#2dcdcd"}},
         {"buttonColor", QColor{"#FF22FF"}},
-        {"buttonRadius", 6},
+        {"elementRadius", 6},
+        {"elementColor", QColor{"#FFFFFF"}},
+
     };
 
     inline QVariantMap fontFamilys{
