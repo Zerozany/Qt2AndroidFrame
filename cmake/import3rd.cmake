@@ -1,7 +1,7 @@
 
 add_subdirectory("${CMAKE_SOURCE_DIR}/third/SonixBeautyUi")
 add_subdirectory("${CMAKE_SOURCE_DIR}/third/WifiConfig")
-add_subdirectory("${CMAKE_SOURCE_DIR}/third/Logger")
+add_subdirectory("${CMAKE_SOURCE_DIR}/third/SonixLogger")
 
 if(ANDROID)
     add_subdirectory("${CMAKE_SOURCE_DIR}/third/android")
@@ -11,6 +11,6 @@ target_link_libraries(${PROJECT_NAME}
     PRIVATE
     SonixBeautyUiplugin
     WifiConfig
-    Logger
+    SonixLogger
     $<$<PLATFORM_ID:Android>:JNIModule>
 )
