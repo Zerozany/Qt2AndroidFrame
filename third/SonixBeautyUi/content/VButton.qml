@@ -1,4 +1,5 @@
 import QtQuick
+import SonixBeautyUi
 
 Item {
     id: root
@@ -6,6 +7,8 @@ Item {
     property var source: null
     property var sourcePressed: null
 
+    readonly property int spacing: 5
+    readonly property int fontSize: 14
     readonly property color textColor: ThemeManager.currentTheme["textColor"]
     readonly property color buttonColor: ThemeManager.currentTheme["buttonColor"]
     readonly property var elementRadius: ThemeManager.currentTheme["elementRadius"]
@@ -21,7 +24,7 @@ Item {
 
         Column {
             anchors.centerIn: parent
-            spacing: 5
+            spacing: root.spacing
 
             Image {
                 id: buttonImage
@@ -36,7 +39,7 @@ Item {
                 id: buttonText
                 color: root.textColor
                 text: root.text
-                font.pixelSize: 14
+                font.pixelSize: root.fontSize
                 wrapMode: Text.WordWrap
                 // font.family: root.textFontFamily
                 verticalAlignment: Text.AlignVCenter
