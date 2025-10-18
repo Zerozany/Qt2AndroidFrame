@@ -6,18 +6,19 @@ Item {
     id: root
     property var text: null
     property var source: null
-    property var fontSize: null
+    property var fontSize: 14
+    property var fontBold: false
 
-    readonly property int spacing: 5
+    readonly property int spacing: 0
     readonly property color textColor: ThemeManager.currentTheme["textColor"]
-    readonly property color imageLaberColor: ThemeManager.currentTheme["imageLaberColor"]
+    readonly property color elementColor: ThemeManager.currentTheme["elementColor"]
     readonly property var elementRadius: ThemeManager.currentTheme["elementRadius"]
     // readonly property var textFontFamily: ThemeManager.fontFamily
 
     Rectangle {
         anchors.fill: parent
         radius: root.elementRadius
-        color: root.imageLaberColor
+        color: root.elementColor
 
         RowLayout {
             anchors.centerIn: parent
@@ -35,6 +36,7 @@ Item {
                 text: root.text
                 color: root.textColor
                 font.pixelSize: root.fontSize
+                font.bold: root.fontBold
                 verticalAlignment: Text.AlignVCenter
                 Layout.alignment: Qt.AlignVCenter
             }

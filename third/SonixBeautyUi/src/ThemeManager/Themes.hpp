@@ -11,7 +11,7 @@ namespace Themes
         {"buttonColor", QColor{"#FFFFFF"}},
         {"elementRadius", 6},
         {"elementColor", QColor{"#FFFFFF"}},
-        {"borderColor", QColor{"#cdcdcd"}},
+        {"borderColor", QColor{"#2dcdcd"}},
     };
 
     inline QVariantMap darkTheme{

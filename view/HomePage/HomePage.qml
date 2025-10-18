@@ -19,7 +19,7 @@ Item {
         Column {
             anchors.fill: parent
             anchors.margins: 5
-            spacing: 20
+            spacing: 15
 
             Row {
                 width: parent.width
@@ -31,6 +31,12 @@ Item {
                     source: "qrc:/view/resource/HomePageIcons/DeviceList.png"
                     fontSize: 20
                 }
+            }
+
+            ProbeDevice {
+                width: parent.width
+                height: 80
+                deviceName: "US06-9C50D101E37E"
             }
         }
     }
