@@ -1,11 +1,7 @@
 file(GLOB SOURCEFILES
     "${CMAKE_SOURCE_DIR}/src/**/*.h"
     "${CMAKE_SOURCE_DIR}/src/**/*.cpp"
-)
-
-target_sources(${PROJECT_NAME}
-    PRIVATE
-    ${SOURCEFILES}
+    "${CMAKE_SOURCE_DIR}/src/**/*.hpp"
 )
 
 file(GLOB INCLUDEDIR
@@ -38,7 +34,6 @@ file(GLOB QFILES RELATIVE ${CMAKE_SOURCE_DIR}
     "${CMAKE_SOURCE_DIR}/view/*.qml"
 )
 
-# QT_QML_GENERATE_QMLLS_INI ON
 set(QT_QML_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/qmlimports")
 
 qt_add_qml_module(${PROJECT_NAME}
@@ -46,4 +41,5 @@ qt_add_qml_module(${PROJECT_NAME}
     VERSION 1.0
     RESOURCE_PREFIX "/"
     QML_FILES ${QFILES}
+    SOURCES ${SOURCEFILES}
 )

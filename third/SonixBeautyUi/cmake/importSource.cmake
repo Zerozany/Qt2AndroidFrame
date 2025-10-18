@@ -19,7 +19,6 @@ set_source_files_properties(${QMLSINGLETONS}
     QT_QML_SINGLETON_TYPE TRUE
 )
 
-# QT_QML_GENERATE_QMLLS_INI ON
 set(QT_QML_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/qmlimports")
 
 qt_add_qml_module(${PROJECT_NAME}
