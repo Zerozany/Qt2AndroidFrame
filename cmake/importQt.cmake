@@ -8,6 +8,7 @@ find_package(Qt6 REQUIRED
     QuickControls2
     LinguistTools
     Sql
+    Multimedia
 )
 
 qt_policy(SET QTP0005 NEW)
@@ -33,4 +34,5 @@ target_link_libraries(${PROJECT_NAME}
     Qt6::Concurrent
     Qt6::QuickControls2
     Qt6::Sql
+    Qt6::Multimedia
 )

@@ -5,11 +5,13 @@ class ApplicationConfig : public ApplicationConfigBase
 {
     Q_OBJECT
 public:
-    ~ApplicationConfig() noexcept = default;
-
-public:
     static auto instance() noexcept -> ApplicationConfig*;
 
+    ~ApplicationConfig() noexcept = default;
+
+    Q_DISABLE_COPY_MOVE(ApplicationConfig)
+
+public:
     auto init() noexcept -> void;
 
 private:

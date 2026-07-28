@@ -38,6 +38,12 @@
     <!-- USB权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
     <!-- 相册访问权限 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
+    <!-- <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" /> -->
 
 
     <supports-screens
@@ -85,6 +91,7 @@
             </intent-filter>
         </activity>
 
+
         <activity
             android:name="com.sonixbeauty.core.MainActivity"
             android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|layoutDirection|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density"
@@ -105,6 +112,12 @@
                 android:value="-- %%INSERT_APP_LIB_NAME%% --" />
 
         </activity>
+
+        <service
+            android:name="org.qtproject.qt.android.multimedia.QtScreenCaptureService"
+            android:foregroundServiceType="mediaProjection"
+            android:exported="false">
+        </service>
 
         <provider
             android:name="androidx.core.content.FileProvider"

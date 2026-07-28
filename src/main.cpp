@@ -24,8 +24,8 @@
 #include <QStandardPaths>
 #include <QDir>
 #include "ZeroLogger.h"
-// #include <spdlog/spdlog.h>              // spdlog 核心库
-// #include <spdlog/sinks/android_sink.h>  // Android sink 实现
+#include <spdlog/spdlog.h>              // spdlog 核心库
+#include <spdlog/sinks/android_sink.h>  // Android sink 实现
 
 int main(int argc, char* argv[])
 {
@@ -45,16 +45,11 @@ int main(int argc, char* argv[])
     QQmlApplicationEngine engine{};
     // Translator::create(&engine, nullptr)->setLanguage(":/i18n/qml_en.qm");
     ViewEngine::instance(engine)->init();
-    // auto android_logger = spdlog::android_logger_mt("android", "spdlog");
-    // android_logger->critical("Use \"adb shell logcat\" to view this message.");
-    // android_logger->set_level(spdlog::level::trace);
-    // spdlog::set_default_logger(android_logger);
-    // spdlog::debug("XXXXXXX=======");
     // ZeroLogger::init(QDir{QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)}.filePath("log/SonixLog_1.txt").toStdString());
     // ZeroLogger::setLevel(spdlog::level::trace);
     // ZeroLogger::trace("---=======");
     // DevicesManager::create(nullptr, nullptr)->refreshDevicesList();
-
+    // qWarning() << QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
 #if false
     SqlManager::instance()->setDatabaseName(QPair<QString, DataBasePathType>("qrc:/config/dataBase/UAS.db", DataBasePathType::ResourcePath));
     QSqlQuery query = SqlManager::instance()->executeSql<QSqlQuery>("qrc:/config/dataBase/UAS.db", "select * from tPartName");
@@ -68,6 +63,11 @@ int main(int argc, char* argv[])
 #endif
 
 #if defined(Q_OS_ANDROID)
+    // auto android_logger = spdlog::android_logger_mt("android", "spdlog");
+    // android_logger->critical("Use \"adb shell logcat\" to view this message.");
+    // android_logger->set_level(spdlog::level::trace);
+    // spdlog::set_default_logger(android_logger);
+    // spdlog::debug("XXXXXXX=======");
 
     // AndroidJNIManager::instance()->setActivityUrl("com/sonixbeauty/module/JWifiManager");
     #if false

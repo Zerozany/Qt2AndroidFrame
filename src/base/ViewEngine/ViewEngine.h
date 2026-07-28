@@ -6,11 +6,13 @@ class ViewEngine : public ViewEngineBase
 {
     Q_OBJECT
 public:
-    ~ViewEngine() noexcept = default;
-
-public:
     static auto instance(QQmlApplicationEngine& _qmlApplicationEngine, ViewEngineBase* _parent = nullptr) noexcept -> ViewEngine*;
 
+    ~ViewEngine() noexcept = default;
+
+    Q_DISABLE_COPY_MOVE(ViewEngine)
+
+public:
     auto init() noexcept -> void;
 
 private:
@@ -20,8 +22,4 @@ private:
     auto connectSignal2Slot() noexcept -> void override;
 
     auto moduleLoad() noexcept -> void override;
-
-Q_SIGNALS:
-
-private:
 };

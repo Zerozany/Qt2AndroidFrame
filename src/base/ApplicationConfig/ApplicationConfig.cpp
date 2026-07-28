@@ -2,7 +2,6 @@
 
 ApplicationConfig::ApplicationConfig(ApplicationConfigBase* _parent) : ApplicationConfigBase{_parent}
 {
-    std::invoke(&ApplicationConfig::init, this);
 }
 
 auto ApplicationConfig::instance() noexcept -> ApplicationConfig*

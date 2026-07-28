@@ -1,13 +1,13 @@
+// pragma ComponentBehavior: Bound
 import QtQuick
 import QZeroMaterialUI
-import QtQuick.Controls
 
+// import QtQuick.Controls
 // import SonixBeautyStudio
 
-Rectangle {
+Item {
     id: root
 
-    color: "grey"
     // Item {
     //     anchors.fill: parent
 
@@ -34,13 +34,19 @@ Rectangle {
 
     MaterialButton {
         id: btn
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: parent.left
+        anchors.leftMargin: 100
         y: 70
         text: qsTr("点击按钮")
         icon.source: "qrc:/qt/qml/SonixBeautyStudio/view/SonixBeauty/resource/setting.png"
-        display: AbstractButton.TextUnderIcon
+        // display: AbstractButton.TextUnderIcon
+        flat: true
+        visible: false
 
         onClicked: {
+            text = text === "qrc:/qt/qml/SonixBeautyStudio/view/SonixBeauty/resource/setting.png" ? "点击按钮" : "qrc:/qt/qml/SonixBeautyStudio/view/SonixBeauty/resource/setting.png";
+            // ContentMethod.showPromptBanner(btn, "This is temporarily invalid");
+            // datePopup.open();
             // mainWindow.Material.theme = Material.Dark;
             // let rect = Qt.rect(50, 50, 100, 100);
             // ScreenShotUtils.imageFormat = ScreenShotUtils.JPG;
@@ -49,7 +55,6 @@ Rectangle {
             // ScreenShotUtils.screenshotItem(btn, 50, 50, 100, 100, "F:/DevelopFiles/SonixBeautyStudio/Screenshoot");
             // ScreenShotUtils.screenshotItem(btn, rect, "F:/DevelopFiles/SonixBeautyStudio/Screenshoot");
             // Translator.language = ":/i18n/qml_en.qm";
-            ContentMethod.showPromptBanner(btn, "This is a Chinese、中国");
         }
 
         // MaterialToolTip {
@@ -59,6 +64,41 @@ Rectangle {
         //     color: "blue"
         // }
     }
+
+    // MaterialCheckBox {
+    //     id: checkBox
+    //     anchors.left: parent.left
+    //     anchors.leftMargin: 100
+    //     y: 400
+    //     text: "Click"
+    // }
+
+    // BusyIndicator {
+    //     anchors.centerIn: parent
+    //     running: checkBox.checked
+    // }
+
+    // DatePopup {
+    //     id: datePopup
+    // }
+
+    // PageBrightness {
+    //     id: pageBrightness
+    // }
+
+    // Slider {
+    //     anchors.bottom: parent.bottom
+    //     anchors.horizontalCenter: parent.horizontalCenter
+
+    //     from: 0
+    //     to: 1
+
+    //     value: pageBrightness.brightness
+
+    //     onValueChanged: {
+    //         pageBrightness.brightness = value;
+    //     }
+    // }
 
     // DynamicIsland {
     //     visible: !stackView.currentItem instanceof LoginPage
